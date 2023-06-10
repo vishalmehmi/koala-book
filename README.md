@@ -1,3 +1,3 @@
-# Demo 2
+# Library Application
 
-Some text
+Working on an application to store data about books in your library.
