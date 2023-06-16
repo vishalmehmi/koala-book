@@ -7,16 +7,12 @@
 </head>
 <body>
     <h1>Home Page</h1>
+    <a href="/">Home</a>
     <div>
         <table id="bookTable">
             <th>Book Title</th>
             <th>Author</th>
             <th>Number of Pages</th>
-            <tr>
-                <td>God of War</td>
-                <td>Santa Monica Studios</td>
-                <td>1000</td>
-            </tr>
         </table>
     </div>
     <div>
@@ -25,54 +21,6 @@
         <input type="text" name="noPages" id="noPages" placeholder="Number of Pages">
         <button id="submit">Submit</button>
     </div>
-    <script>
-        const button = document.getElementById('submit');
-        const table = document.getElementById('bookTable');
-        const delBtn = document.getElementById('delte');
-
-        getData();
-
-        async function getData() {
-
-            const response = await fetch('/api');
-            const data = await response.json();
-
-            for (item of data) {
-                const row = document.createElement('tr');
-                const title = document.createElement('td');
-                const auth = document.createElement('td');
-                const page = document.createElement('td');
-                const del = document.createElement('button');
-
-                title.textContent = item.bookTitle;
-                auth.textContent = item.author;
-                page.textContent = item.noPages;
-                del.textContent = 'Delete';
-                del.id = 'delete';
-
-                row.append(title, auth, page, del);
-                table.append(row);
-            };
-        };
-
-        button.addEventListener('click', async function() {
-            const bookTitle = document.getElementById('bookTitle').value;
-            const author = document.getElementById('author').value;
-            const noPages = document.getElementById('noPages').value;
-            data = {bookTitle, author, noPages};
-
-            const options = {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers:{
-                    "Content-Type": "application/json"
-                }
-            };
-            const response = await fetch('/api', options);
-            const json = await response.json();
-            console.log(json);
-        });
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
